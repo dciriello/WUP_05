@@ -1,7 +1,7 @@
 ---
 title: "Aides Drug"
-author: "Put your name here!"
-date: "put the date here"
+author: "Dom Ciriello"
+date: "20210216"
 output: html_document
 ---
 
@@ -9,6 +9,7 @@ output: html_document
 require(tidyverse)
 require(tigerstats)
 triUmp <-read.csv(file="triUmpsal.csv",header=TRUE)
+triuUmpF <- filter(triUmp,gender=="F")
 ```
 
 # Introduction
@@ -31,14 +32,40 @@ A new  preventative aides drug (triUmpsal) is under test in clinical trials. Con
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
 
+  
+```{r}
+barchartGC(~infected + treatment,data=triuUmpF)
+barchartGC(~infected + treatment,data=triuUmpF, type="percent")
+
+```
+
+The plot shows that women who received the vaccine were more likey to contract AIDS.
+
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+
+```{r}
+table1 <- xtabs(~infected + treatment,data=triuUmpF)
+rowPerc(table1)
+colPerc(table1)
+```
+
+The table results show that women are more susceptible to contracting AIDS after taking the drug/vaccine. Out of the women who got aids, 59% of them got the vaccine, and 41% got the placebo.
 
 ## Inferential Results
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
 
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+the P-Value is 0.00006596.  The number is so small, it is extremely unlikely to have our results to occur by chance.
+
+The odds ratio of 1.543902 means that the women who got the vaccine were approximately 1.5 times more likely to contract AIDS than the women who received the placebo.
 
 # Discussion and Conclusion
 

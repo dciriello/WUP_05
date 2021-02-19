@@ -70,3 +70,5 @@ The odds ratio of 1.543902 means that the women who got the vaccine were approxi
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
+
+The drug is not effective for females.  Based on our results, the drug causes females to become more susceptible to contracting AIDS. It failed the clinical test.
